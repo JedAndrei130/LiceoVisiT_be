@@ -5,7 +5,10 @@ import type { ResultSetHeader } from "mysql2";
 
 const toMysqlDatetime = (iso: string | null | undefined): string | null => {
   if (!iso) return null;
-  return new Date(iso).toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
+  const d = new Date(iso);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  // Use local time (not UTC) so stored datetimes reflect the Philippine timezone
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 };
 
 export async function getAllVisitors(context: Context) {

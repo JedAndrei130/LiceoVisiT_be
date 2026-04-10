@@ -5,12 +5,13 @@ export interface UserModel extends RowDataPacket {
   name: string;
   email: string;
   position: string;
-  created_at: string;
+  password: string;
+  created_date: string;
 }
 
 export interface CreateUserModel {
   name: string;
   email: string;
   position: string;
-  password?: string;
+  password: string;
 }

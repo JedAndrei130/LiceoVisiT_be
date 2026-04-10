@@ -2,7 +2,7 @@ import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { getAllVisitors, createVisitor, updateVisitor, deleteVisitor } from './controllers/visitor.controller.js';
-import { getAllUsers, createUser, updateUser, deleteUser, getDashboardStats, getVisitorTrends, getVisitPurpose } from './controllers/user.controller.js';
+import { getAllUsers, createUser, updateUser, deleteUser, loginUser, getDashboardStats, getVisitorTrends, getVisitPurpose } from './controllers/user.controller.js';
 import { getAllCampuses } from './controllers/campus.controller.js';
 
 const app = new Hono();
@@ -16,6 +16,9 @@ app.use('*', cors({
 
 // Test route
 app.get('/', (c) => c.text('Hello Hono!'));
+
+// Auth routes
+app.post('/auth/login', loginUser);
 
 // Visitor routes
 app.get('/visitors', getAllVisitors);

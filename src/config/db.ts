@@ -9,6 +9,10 @@ const dbConfig = {
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
+    // Return DATE/DATETIME columns as plain strings to prevent mysql2 from
+    // converting them to JS Date objects, which get timezone-shifted when
+    // serialized to JSON (causing dates to appear one day behind in UTC+8).
+    dateStrings: true,
 };
 
 const pool = mysql.createPool(dbConfig);
