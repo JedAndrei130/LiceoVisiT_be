@@ -65,7 +65,7 @@ INSERT IGNORE INTO campus (campus_id, campus_name) VALUES
 
 -- Default admin account
 -- Email    : admin@liceo.edu.ph
--- Password : password  (bcrypt hash below — change after first login!)
+-- Password : admin123  (bcrypt hash below — change after first login!)
 INSERT IGNORE INTO users (name, email, position, password) VALUES (
   'Admin',
   'admin@liceo.edu.ph',
